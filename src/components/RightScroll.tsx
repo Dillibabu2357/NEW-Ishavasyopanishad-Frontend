@@ -7,6 +7,7 @@ const RightScroll = () => {
       style={{
         backgroundImage: `url(${VScrollImg})`,
         backgroundSize: "100% 100%",
+        minWidth: "250px",
       }}
     >
       <div className="flex flex-col items-center my-10">

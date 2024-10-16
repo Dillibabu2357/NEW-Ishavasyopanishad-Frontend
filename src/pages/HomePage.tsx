@@ -1,4 +1,4 @@
-import Header from "@/components/Header"
+import Header from "@/components/shared/Header"
 import MainContainer from "@/components/MainContainer"
 import BaseLayout from "@/layouts/BaseLayout"
 

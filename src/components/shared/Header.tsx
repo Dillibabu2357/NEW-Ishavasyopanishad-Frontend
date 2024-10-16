@@ -1,6 +1,6 @@
 import HdrImg from "@/assets/header_img.png"
 import HdrBg from "@/assets/header_bg.png"
-import TexturedButton from "./TexturedButton"
+import TexturedButton from "@/components/shared/TexturedButton"
 
 const Header = () => {
   return (
@@ -21,8 +21,8 @@ const Header = () => {
       </div>
       <div className="pr-4 pt-2">
         <TexturedButton selected>Home</TexturedButton>
-        <TexturedButton>About us</TexturedButton>
-        <TexturedButton>Contacts</TexturedButton>
+        <TexturedButton>About</TexturedButton>
+        <TexturedButton>Credits</TexturedButton>
         <TexturedButton>Help</TexturedButton>
       </div>
     </div>
