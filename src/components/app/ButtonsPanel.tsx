@@ -3,7 +3,7 @@ import { ChevronFirst, ChevronLast, Play, Repeat, Volume } from "lucide-react"
 
 const ButtonsPanel = () => {
   return (
-    <div className="flex justify-center gap-2">
+    <div className="flex justify-center gap-2 mb-4">
       <TexturedButton>
         <ChevronFirst />
       </TexturedButton>

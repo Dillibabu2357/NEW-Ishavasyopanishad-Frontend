@@ -1,4 +1,5 @@
 import HorizontalScroll from "@/assets/horizontal_scroll.png"
+
 const MeaningView = () => {
   return (
     <div

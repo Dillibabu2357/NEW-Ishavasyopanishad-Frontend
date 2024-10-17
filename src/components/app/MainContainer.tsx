@@ -1,7 +1,7 @@
 import LeftScroll from "./LeftScroll"
 import SutraView from "./SutraView"
 import RightScroll from "./RightScroll"
-import SearchBar from "@/components/SearchBar"
+import SearchBar from "./SearchBar"
 import MeaningView from "./MeaningView"
 import ButtonsPanel from "./ButtonsPanel"
 
