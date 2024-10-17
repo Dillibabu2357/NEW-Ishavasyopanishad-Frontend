@@ -1,5 +1,5 @@
 import HorizontalScroll from "@/assets/horizontal_scroll.png"
-const MantraView = () => {
+const SutraView = () => {
   return (
     <div
       style={{
@@ -25,4 +25,4 @@ const MantraView = () => {
   )
 }
 
-export default MantraView
+export default SutraView

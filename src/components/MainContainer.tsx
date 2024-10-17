@@ -1,8 +1,9 @@
 import LeftScroll from "./LeftScroll"
-import MantraView from "./MantraView"
+import SutraView from "./SutraView"
 import RightScroll from "./RightScroll"
 import SearchBar from "@/components/SearchBar"
-import TransliterationView from "./TransliterationView"
+import MeaningView from "./MeaningView"
+import ButtonsPanel from "./ButtonsPanel"
 
 const MainContainer = () => {
   return (
@@ -10,9 +11,9 @@ const MainContainer = () => {
       <LeftScroll />
       <div className="flex-grow">
         <SearchBar />
-        <MantraView />
-        <TransliterationView />
-        <SearchBar />
+        <SutraView />
+        <MeaningView />
+        <ButtonsPanel />
       </div>
       <RightScroll />
     </div>

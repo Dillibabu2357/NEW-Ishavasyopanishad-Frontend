@@ -10,7 +10,7 @@ const SearchBar = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      Search bar
+      Search
     </div>
   )
 }
