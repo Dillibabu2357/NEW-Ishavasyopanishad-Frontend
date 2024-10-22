@@ -9,20 +9,22 @@ const api = axios.create({
   },
 })
 
-type TSutra = {
+type TMeaning = {
   id: number
-  number: number
   text: string
+  language: string
 }
 
-const getSutra = async (number: number) => {
-  const response = await api.get(`/sutras/${number}`)
+type Language = "en" | "ka" | "te" | "ta" | "hi"
+
+const getMeaning = async (sutra_no: number, lang: Language) => {
+  const response = await api.get(`/sutras/${sutra_no}/meaning?lang=${lang}`)
   return response.data
 }
 
-export const useGetSutraQuery = (number: number) => {
-  return useQuery<TSutra>({
-    queryKey: ["sutras", number],
-    queryFn: () => getSutra(number),
+export const useGetMeaningQuery = (sutra_no: number, lang: Language) => {
+  return useQuery<TMeaning>({
+    queryKey: ["sutras", sutra_no, lang],
+    queryFn: () => getMeaning(sutra_no, lang),
   })
 }

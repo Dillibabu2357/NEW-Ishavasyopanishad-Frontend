@@ -9,7 +9,7 @@ const api = axios.create({
   },
 })
 
-type TTransliteration = {
+type TInterpretation = {
   id: number
   text: string
   language: string
@@ -17,16 +17,16 @@ type TTransliteration = {
 
 type Language = "en" | "ka" | "te" | "ta" | "hi"
 
-const getTransliteration = async (number: number, lang: Language) => {
+const getInterpretation = async (number: number, lang: Language) => {
   const response = await api.get(
-    `/sutras/${number}/Transliteration?lang=${lang}`,
+    `/sutras/${number}/Interpretation?lang=${lang}`,
   )
   return response.data
 }
 
-export const useGetTransliterationQuery = (number: number, lang: Language) => {
-  return useQuery<TTransliteration>({
+export const useGetInterpretationQuery = (number: number, lang: Language) => {
+  return useQuery<TInterpretation>({
     queryKey: ["sutras", number, lang],
-    queryFn: () => getTransliteration(number, lang),
+    queryFn: () => getInterpretation(number, lang),
   })
 }

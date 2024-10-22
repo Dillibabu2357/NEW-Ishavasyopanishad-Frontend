@@ -37,7 +37,7 @@ const getSutraList = async () => {
 }
 
 export const useGetSutraListQuery = () => {
-  return useQuery<TSutraList>({
+  return useQuery<TSutraList[]>({
     queryKey: ["sutras"],
     queryFn: getSutraList,
   })

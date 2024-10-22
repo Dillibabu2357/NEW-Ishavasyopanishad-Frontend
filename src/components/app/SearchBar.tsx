@@ -1,4 +1,4 @@
-import SearchBarImg from "@/assets/search_bar.png"
+import SearchBarImg from "@/assets/light_bar.png"
 
 const SearchBar = () => {
   return (
