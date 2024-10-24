@@ -13,23 +13,35 @@ const SutraView = () => {
         backgroundImage: `url(${HorizontalScroll})`,
         backgroundSize: "100% 100%",
         backgroundRepeat: "no-repeat",
-        minHeight: "200px",
       }}
     >
-      {isLoading && <BeatLoader />}
-      {error && <ErrorMessage error={error.message} />}
-      <div className="px-12 pt-8 pb-14">
+      {/* For top padding when scrolling  */}
+      <div className="pt-8"></div>
+      <div className="h-[200px] px-8 overflow-y-auto box-content">
+        {isLoading && <BeatLoader />}
+        {error && <ErrorMessage error={error.message} />}
         {data && (
           <div className="font-bold text-orange-500 text-xl text-center">
             {data.text && parseHTML(data.text)}
           </div>
         )}
+        <p className="mt-4 text-armygreen font-semibold">
+          oṃ pūrṇamadaḥ pūrṇamidaṃ pūrṇātpūrṇamudacyate | pūrṇasya pūrṇamādāya
+          pūrṇamevāvaśiṣyate || oṃ pūrṇamadaḥ pūrṇamidaṃ pūrṇātpūrṇamudacyate |
+          pūrṇasya pūrṇamādāya pūrṇamevāvaśiṣyate || pūrṇasya pūrṇamādāya
+          pūrṇamevāvaśiṣyate || pūrṇasya pūrṇamādāya pūrṇamevāvaśiṣyate ||
+        </p>
+
         <p className="mt-4">
           oṃ pūrṇamadaḥ pūrṇamidaṃ pūrṇātpūrṇamudacyate | pūrṇasya pūrṇamādāya
           pūrṇamevāvaśiṣyate || oṃ pūrṇamadaḥ pūrṇamidaṃ pūrṇātpūrṇamudacyate |
-          pūrṇasya pūrṇamādāya pūrṇamevāvaśiṣyate ||
+          pūrṇasya pūrṇamādāya pūrṇamevāvaśiṣyate || pūrṇasya pūrṇamādāya
+          pūrṇamevāvaśiṣyate || pūrṇasya pūrṇamādāya pūrṇamevāvaśiṣyate ||
         </p>
       </div>
+
+      {/* For bottom padding when scrolling  */}
+      <div className="pb-14"></div>
     </div>
   )
 }

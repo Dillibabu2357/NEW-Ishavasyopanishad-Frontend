@@ -1,3 +1,4 @@
+import { Language } from "@/types/types"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
@@ -12,10 +13,8 @@ const api = axios.create({
 type TMeaning = {
   id: number
   text: string
-  language: string
+  language: Language
 }
-
-type Language = "en" | "ka" | "te" | "ta" | "hi"
 
 const getMeaning = async (sutra_no: number, lang: Language) => {
   const response = await api.get(`/sutras/${sutra_no}/meaning?lang=${lang}`)

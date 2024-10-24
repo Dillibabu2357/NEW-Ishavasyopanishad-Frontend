@@ -4,9 +4,12 @@ import { useGetSutraListQuery } from "@/api/sutras.api"
 import ErrorMessage from "../shared/ErrorMessage"
 import { BeatLoader } from "react-spinners"
 import LanguageSelect from "./LanguageSelect"
+import useSutraStore from "@/store/sutraStore"
 
 const RightScroll = () => {
   const { error, isLoading, data } = useGetSutraListQuery()
+  const { sutra_no, setSutraNo } = useSutraStore()
+
   return (
     <div
       className="h-[500px] w-[250px]  bg-cover bg-no-repeat bg-center"
@@ -26,7 +29,9 @@ const RightScroll = () => {
             data.map((item) => (
               <TexturedButton
                 key={item.id}
-                className="text-black p-0 w-10 h-10 pb-1"
+                selected={item.number === sutra_no}
+                className="p-0 w-10 h-10 pb-1"
+                onClick={() => setSutraNo(item.number)}
               >
                 {item.number}
               </TexturedButton>

@@ -6,17 +6,18 @@ import ChantDarkIcon from "@/assets/chant_dark_icon.png"
 import TeachMeDarkIcon from "@/assets/teach_me_dark_icon.png"
 import LearnMoreDarkIcon from "@/assets/learn_more_dark_icon.png"
 import { useState } from "react"
+import { Mode } from "@/types/types"
+import { useNavigate } from "react-router-dom"
+import useModeStore from "@/store/modeStore"
 
 const LeftScroll = () => {
-  const [selected, setSelected] = useState<"chant" | "teach_me" | "learn_more">(
-    "chant",
-  )
-  const [hovered, setHovered] = useState<
-    "chant" | "teach_me" | "learn_more" | null
-  >(null)
+  const { mode, setMode } = useModeStore()
+  const [hovered, setHovered] = useState<Mode | null>(null)
 
-  const getIcon = (item: "chant" | "teach_me" | "learn_more") => {
-    if (selected === item || hovered === item) {
+  const navigate = useNavigate()
+
+  const getIcon = (item: Mode) => {
+    if (mode === item || hovered === item) {
       return item === "chant"
         ? ChantDarkIcon
         : item === "teach_me"
@@ -39,33 +40,31 @@ const LeftScroll = () => {
         minWidth: "250px",
       }}
     >
-      {["chant", "teach_me", "learn_more"].map((item) => (
+      {Object.values(Mode).map((item) => (
         <div
           key={item}
-          onClick={() =>
-            setSelected(item as "chant" | "teach_me" | "learn_more")
-          }
-          onMouseEnter={() =>
-            setHovered(item as "chant" | "teach_me" | "learn_more")
-          }
+          onClick={() => {
+            setMode(item as Mode)
+            navigate(item.split("_").join("-"))
+          }}
+          onMouseEnter={() => setHovered(item as Mode)}
           onMouseLeave={() => setHovered(null)}
           className="flex flex-col items-center p-2 cursor-pointer"
         >
           <h4
             className={`${
-              selected === item || hovered === item
+              mode === item || hovered === item
                 ? "font-bold text-orange-500"
                 : ""
             }`}
           >
-            {item === "chant"
-              ? "Chant"
-              : item === "teach_me"
-                ? "Teach Me"
-                : "Learn More"}
+            {item
+              .split("_")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")}
           </h4>
           <img
-            src={getIcon(item as "chant" | "teach_me" | "learn_more")}
+            src={getIcon(item as Mode)}
             alt={`${item.charAt(0).toUpperCase() + item.slice(1)} Mode`}
             height="64px"
             width="64px"

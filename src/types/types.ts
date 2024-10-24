@@ -11,3 +11,9 @@ export enum Philosophy {
   Dvaitha = "dva",
   Vishishtadvaita = "vis",
 }
+
+export enum Mode {
+  Chant = "chant",
+  TeachMe = "teach_me",
+  LearnMore = "learn_more",
+}

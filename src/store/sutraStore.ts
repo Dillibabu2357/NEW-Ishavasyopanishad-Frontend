@@ -1,11 +1,14 @@
 import { create } from "zustand"
 
-interface SutraState {
+interface State {
   sutra_no: number
+}
+
+interface Actions {
   setSutraNo: (sutraNo: number) => void
 }
 
-const useSutraStore = create<SutraState>((set) => ({
+const useSutraStore = create<State & Actions>((set) => ({
   sutra_no: 1,
   setSutraNo: (sutraNo) => set(() => ({ sutra_no: sutraNo })),
 }))

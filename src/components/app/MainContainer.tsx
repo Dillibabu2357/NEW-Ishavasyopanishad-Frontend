@@ -4,6 +4,8 @@ import RightScroll from "./RightScroll"
 import SearchBar from "./SearchBar"
 import MeaningView from "./MeaningView"
 import ButtonsPanel from "./ButtonsPanel"
+import { Route, Routes } from "react-router-dom"
+import InterpretationView from "./InterpretationView"
 
 const MainContainer = () => {
   return (
@@ -11,8 +13,18 @@ const MainContainer = () => {
       <LeftScroll />
       <div className="flex-grow">
         <SearchBar />
-        <SutraView />
-        <MeaningView />
+        <Routes>
+          <Route
+            path="/|chant|recite"
+            element={
+              <>
+                <SutraView />
+                <MeaningView />
+              </>
+            }
+          />
+          <Route path="learn-more" element={<InterpretationView />} />
+        </Routes>
         <ButtonsPanel />
       </div>
       <RightScroll />

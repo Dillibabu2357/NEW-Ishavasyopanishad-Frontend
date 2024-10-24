@@ -1,3 +1,4 @@
+import { Language, Philosophy } from "@/types/types"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
@@ -12,21 +13,28 @@ const api = axios.create({
 type TInterpretation = {
   id: number
   text: string
-  language: string
+  language: Language
+  philosophy: Philosophy
 }
 
-type Language = "en" | "ka" | "te" | "ta" | "hi"
-
-const getInterpretation = async (number: number, lang: Language) => {
+const getInterpretation = async (
+  number: number,
+  lang: Language,
+  philosophy: Philosophy,
+) => {
   const response = await api.get(
-    `/sutras/${number}/Interpretation?lang=${lang}`,
+    `/sutras/${number}/Interpretation?lang=${lang}&ptype=${philosophy}`,
   )
   return response.data
 }
 
-export const useGetInterpretationQuery = (number: number, lang: Language) => {
+export const useGetInterpretationQuery = (
+  number: number,
+  lang: Language,
+  philosophy: Philosophy,
+) => {
   return useQuery<TInterpretation>({
     queryKey: ["sutras", number, lang],
-    queryFn: () => getInterpretation(number, lang),
+    queryFn: () => getInterpretation(number, lang, philosophy),
   })
 }

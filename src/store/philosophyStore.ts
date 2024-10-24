@@ -1,12 +1,15 @@
 import { Philosophy } from "@/types/types"
 import { create } from "zustand"
 
-interface PhilosophyState {
+interface State {
   philosophy: Philosophy
+}
+
+interface Actions {
   setPhilosophy: (ptype: Philosophy) => void
 }
 
-const usePhilosophyStore = create<PhilosophyState>((set) => ({
+const usePhilosophyStore = create<State & Actions>((set) => ({
   philosophy: Philosophy.Advaitha,
   setPhilosophy: (ptype) => set(() => ({ philosophy: ptype })),
 }))

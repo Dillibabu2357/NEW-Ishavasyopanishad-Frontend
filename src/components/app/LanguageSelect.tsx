@@ -9,15 +9,30 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import useLanguageStore from "@/store/languageStore"
+import { Language } from "@/types/types"
 
 const LanguageSelect = () => {
   const [isHovered, setIsHovered] = useState(false)
-  const [isItemHovered, setIsItemHovered] = useState(false)
+  const [focusedItem, setFocusedItem] = useState<string | null>(null)
+
+  const { language, setLanguage } = useLanguageStore()
+  const languageMap: Record<Language, string> = {
+    [Language.English]: "English",
+    [Language.Kannada]: "Kannada",
+    [Language.Tamil]: "Tamil",
+    [Language.Telugu]: "Telugu",
+    [Language.Hindi]: "Hindi",
+  }
+
+  const handleItemFocus = (value: string | null) => {
+    setFocusedItem(value)
+  }
 
   return (
-    <Select>
+    <Select onValueChange={(value) => setLanguage(value as Language)}>
       <SelectTrigger
-        className="w-[180px] border-none outline-black"
+        className="w-[180px] border-none outline-black text-armygreen font-bold"
         style={{
           boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
           backgroundImage: `url(${isHovered ? DarkBarImg : LightBarImg})`,
@@ -27,7 +42,7 @@ const LanguageSelect = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <SelectValue placeholder="English" />
+        <SelectValue placeholder={languageMap[language]} />
       </SelectTrigger>
       <SelectContent
         className="w-[180px] border-none"
@@ -37,22 +52,29 @@ const LanguageSelect = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <SelectItem
-          value="en"
-          style={{
-            backgroundImage: `url(${isItemHovered ? DarkBarImg : LightBarImg})`,
-            backgroundSize: "100% 100%",
-            backgroundRepeat: "no-repeat",
-          }}
-          onMouseEnter={() => setIsItemHovered(true)}
-          onMouseLeave={() => setIsItemHovered(false)}
-        >
-          English
-        </SelectItem>
-        <SelectItem value="ka">Kannada</SelectItem>
-        <SelectItem value="te">Telugu</SelectItem>
-        <SelectItem value="ta">Tamil</SelectItem>
-        <SelectItem value="hi">Hindi</SelectItem>
+        {[
+          { value: "en", label: "English" },
+          { value: "ka", label: "Kannada" },
+          { value: "te", label: "Telugu" },
+          { value: "ta", label: "Tamil" },
+          { value: "hi", label: "Hindi" },
+        ].map((item) => (
+          <SelectItem
+            key={item.value}
+            value={item.value}
+            className="focus:text-white font-bold text-armygreen"
+            style={{
+              backgroundImage:
+                focusedItem === item.value ? `url(${DarkBarImg})` : "none",
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+            }}
+            onFocus={() => handleItemFocus(item.value)}
+            onBlur={() => handleItemFocus(null)}
+          >
+            {item.label}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   )
