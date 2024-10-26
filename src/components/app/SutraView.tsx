@@ -1,11 +1,21 @@
 import { useGetSutraQuery } from "@/api/sutras.api"
 import HorizontalScroll from "@/assets/horizontal_scroll.png"
 import ErrorMessage from "../shared/ErrorMessage"
-import { BeatLoader } from "react-spinners"
 import { parseHTML } from "@/utils/utils"
+import useSutraStore from "@/store/sutraStore"
+import { useGetTransliterationQuery } from "@/api/transliteration.api"
+import useLanguageStore from "@/store/languageStore"
+import CustomBeatLoader from "../shared/CustomBeatLoader"
 
 const SutraView = () => {
-  const { error, isLoading, data } = useGetSutraQuery(14)
+  const { sutra_no } = useSutraStore()
+  const { language } = useLanguageStore()
+  const { error, isLoading, data } = useGetSutraQuery(sutra_no)
+  const {
+    error: transError,
+    isLoading: isTransLoading,
+    data: transliteration,
+  } = useGetTransliterationQuery(sutra_no, language)
 
   return (
     <div
@@ -18,26 +28,21 @@ const SutraView = () => {
       {/* For top padding when scrolling  */}
       <div className="pt-8"></div>
       <div className="h-[200px] px-8 overflow-y-auto box-content">
-        {isLoading && <BeatLoader />}
+        {isLoading && <CustomBeatLoader />}
         {error && <ErrorMessage error={error.message} />}
         {data && (
           <div className="font-bold text-orange-500 text-xl text-center">
             {data.text && parseHTML(data.text)}
           </div>
         )}
-        <p className="mt-4 text-armygreen font-semibold">
-          oṃ pūrṇamadaḥ pūrṇamidaṃ pūrṇātpūrṇamudacyate | pūrṇasya pūrṇamādāya
-          pūrṇamevāvaśiṣyate || oṃ pūrṇamadaḥ pūrṇamidaṃ pūrṇātpūrṇamudacyate |
-          pūrṇasya pūrṇamādāya pūrṇamevāvaśiṣyate || pūrṇasya pūrṇamādāya
-          pūrṇamevāvaśiṣyate || pūrṇasya pūrṇamādāya pūrṇamevāvaśiṣyate ||
-        </p>
 
-        <p className="mt-4">
-          oṃ pūrṇamadaḥ pūrṇamidaṃ pūrṇātpūrṇamudacyate | pūrṇasya pūrṇamādāya
-          pūrṇamevāvaśiṣyate || oṃ pūrṇamadaḥ pūrṇamidaṃ pūrṇātpūrṇamudacyate |
-          pūrṇasya pūrṇamādāya pūrṇamevāvaśiṣyate || pūrṇasya pūrṇamādāya
-          pūrṇamevāvaśiṣyate || pūrṇasya pūrṇamādāya pūrṇamevāvaśiṣyate ||
-        </p>
+        {isTransLoading && <CustomBeatLoader />}
+        {transError && <ErrorMessage error={transError.message} />}
+        {transliteration && (
+          <p className="mt-4 text-armygreen font-semibold">
+            {transliteration.text && parseHTML(transliteration.text)}
+          </p>
+        )}
       </div>
 
       {/* For bottom padding when scrolling  */}

@@ -2,11 +2,14 @@ import { useGetMeaningQuery } from "@/api/meaning.api"
 import HorizontalScroll from "@/assets/horizontal_scroll.png"
 import { BeatLoader } from "react-spinners"
 import ErrorMessage from "../shared/ErrorMessage"
+import useSutraStore from "@/store/sutraStore"
 import useLanguageStore from "@/store/languageStore"
+import CustomBeatLoader from "../shared/CustomBeatLoader"
 
 const MeaningView = () => {
+  const { sutra_no } = useSutraStore()
   const { language } = useLanguageStore()
-  const { error, isLoading, data } = useGetMeaningQuery(1, language)
+  const { error, isLoading, data } = useGetMeaningQuery(sutra_no, language)
 
   return (
     <div
@@ -19,11 +22,7 @@ const MeaningView = () => {
       {/* For top padding when scrolling  */}
       <div className="pt-8"></div>
       <div className="h-[200px] px-8 overflow-y-auto">
-        {isLoading && (
-          <div className="text-center">
-            <BeatLoader />
-          </div>
-        )}
+        {isLoading && <CustomBeatLoader />}
         {error && <ErrorMessage error={"No meaning found"} />}
         {data && data.text}
       </div>

@@ -15,7 +15,25 @@ const MainContainer = () => {
         <SearchBar />
         <Routes>
           <Route
-            path="/|chant|recite"
+            path="/"
+            element={
+              <>
+                <SutraView />
+                <MeaningView />
+              </>
+            }
+          />
+          <Route
+            path="chant"
+            element={
+              <>
+                <SutraView />
+                <MeaningView />
+              </>
+            }
+          />
+          <Route
+            path="teach-me"
             element={
               <>
                 <SutraView />

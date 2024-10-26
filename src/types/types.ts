@@ -1,6 +1,6 @@
 export enum Language {
   English = "en",
-  Kannada = "ka",
+  Kannada = "kn",
   Tamil = "ta",
   Telugu = "te",
   Hindi = "hi",
