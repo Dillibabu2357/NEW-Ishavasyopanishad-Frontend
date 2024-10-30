@@ -9,6 +9,7 @@ import {
   Volume,
 } from "lucide-react"
 import useSutraStore from "@/store/sutraStore"
+import { useGetAudioQuery } from "@/api/audio.api"
 
 const ButtonsPanel = () => {
   const { sutra_no, setSutraNo } = useSutraStore()
@@ -16,27 +17,22 @@ const ButtonsPanel = () => {
   const [isRepeating, setIsRepeating] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  // Fetch the audio URL based on the sutra_no
-  const fetchAudioUrl = async (sutraNo: number) => {
-    // Replace with actual backend fetch call
-    const response = await fetch(`/api/audio/${sutraNo}`)
-    const data = await response.json()
-    return data.audioUrl
-  }
+  const { data } = useGetAudioQuery(sutra_no, "chant")
 
   // Play the fetched audio when sutra_no changes
   useEffect(() => {
     const playAudio = async () => {
       if (audioRef.current) {
-        const audioUrl = await fetchAudioUrl(sutra_no)
-        audioRef.current.src = audioUrl
+        audioRef.current.src = data?.file_path
+          ? `${import.meta.env.VITE_API_URL}/${data.file_path}`
+          : ""
         audioRef.current.play()
         setIsPlaying(true)
       }
     }
 
     playAudio()
-  }, [sutra_no])
+  }, [sutra_no, data])
 
   // Handlers for buttons
   const handleNext = () => {

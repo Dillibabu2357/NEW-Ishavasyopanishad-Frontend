@@ -23,7 +23,7 @@ const getMeaning = async (sutra_no: number, lang: Language) => {
 
 export const useGetMeaningQuery = (sutra_no: number, lang: Language) => {
   return useQuery<TMeaning>({
-    queryKey: ["sutras", sutra_no, lang],
+    queryKey: ["meanings", sutra_no, lang],
     queryFn: () => getMeaning(sutra_no, lang),
   })
 }

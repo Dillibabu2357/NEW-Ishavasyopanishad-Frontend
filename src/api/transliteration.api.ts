@@ -18,14 +18,14 @@ type TTransliteration = {
 
 const getTransliteration = async (number: number, lang: Language) => {
   const response = await api.get(
-    `/sutras/${number}/Transliteration?lang=${lang}`,
+    `/sutras/${number}/transliteration?lang=${lang}`,
   )
   return response.data
 }
 
 export const useGetTransliterationQuery = (number: number, lang: Language) => {
   return useQuery<TTransliteration>({
-    queryKey: ["sutras", number, lang],
+    queryKey: ["transliterations", number, lang],
     queryFn: () => getTransliteration(number, lang),
   })
 }

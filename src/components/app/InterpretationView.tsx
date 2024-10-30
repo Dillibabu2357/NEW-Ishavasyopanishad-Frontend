@@ -1,12 +1,12 @@
 import LargeHorizontalScroll from "@/assets/large_horizontal_scroll.png"
 
-import { BeatLoader } from "react-spinners"
 import ErrorMessage from "../shared/ErrorMessage"
 import useSutraStore from "@/store/sutraStore"
 import useLanguageStore from "@/store/languageStore"
 import usePhilosophyStore from "@/store/philosophyStore"
 import { useGetInterpretationQuery } from "@/api/interpretation.api"
 import CustomBeatLoader from "../shared/CustomBeatLoader"
+import MultilineText from "../shared/MultilineText"
 
 const InterpretationView = () => {
   const { sutra_no } = useSutraStore()
@@ -32,7 +32,9 @@ const InterpretationView = () => {
       <div className="h-[350px] px-8 overflow-y-auto">
         {isLoading && <CustomBeatLoader />}
         {error && <ErrorMessage error={"No interpretation found"} />}
-        {data && data.text}
+        <div className="font-semibold text-armygreen px-4 pt-2 text-lg">
+          {data && <MultilineText text={data.text} />}
+        </div>
       </div>
 
       {/* For bottom padding when scrolling  */}
