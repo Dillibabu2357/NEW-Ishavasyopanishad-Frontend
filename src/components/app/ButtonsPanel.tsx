@@ -7,14 +7,24 @@ import {
   Pause,
   Repeat,
   Volume,
+  Volume1,
+  Volume2,
+  VolumeX,
 } from "lucide-react"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import useSutraStore from "@/store/sutraStore"
 import { useGetAudioQuery } from "@/api/audio.api"
+import { Slider } from "../ui/slider"
 
 const ButtonsPanel = () => {
   const { sutra_no, setSutraNo } = useSutraStore()
   const [isPlaying, setIsPlaying] = useState(false)
   const [isRepeating, setIsRepeating] = useState(false)
+  const [volume, setVolume] = useState(1) // Default volume set to max (1.0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   const { data } = useGetAudioQuery(sutra_no, "chant")
@@ -33,6 +43,13 @@ const ButtonsPanel = () => {
 
     playAudio()
   }, [sutra_no, data])
+
+  // Update volume when volume state changes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume
+    }
+  }, [volume])
 
   // Handlers for buttons
   const handleNext = () => {
@@ -63,6 +80,23 @@ const ButtonsPanel = () => {
     }
   }
 
+  const handleVolumeChange = (value: number[]) => {
+    setVolume(value[0])
+  }
+
+  // Function to get the appropriate volume icon based on volume level
+  const getVolumeIcon = () => {
+    if (volume === 0) {
+      return <VolumeX />
+    } else if (volume > 0 && volume <= 0.33) {
+      return <Volume />
+    } else if (volume > 0.33 && volume <= 0.66) {
+      return <Volume1 />
+    } else {
+      return <Volume2 />
+    }
+  }
+
   return (
     <div className="flex justify-center gap-2 mb-4">
       <TexturedButton onClick={handlePrevious}>
@@ -81,9 +115,20 @@ const ButtonsPanel = () => {
         <Repeat />
       </TexturedButton>
 
-      <TexturedButton>
-        <Volume />
-      </TexturedButton>
+      <Popover>
+        <PopoverTrigger>
+          <TexturedButton>{getVolumeIcon()}</TexturedButton>
+        </PopoverTrigger>
+        <PopoverContent>
+          <Slider
+            min={0}
+            max={1}
+            step={0.01}
+            value={[volume]}
+            onValueChange={handleVolumeChange}
+          />
+        </PopoverContent>
+      </Popover>
 
       <audio ref={audioRef} />
     </div>
