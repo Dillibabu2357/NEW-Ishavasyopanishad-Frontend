@@ -42,9 +42,9 @@ const SearchBar = () => {
   ) => {
     setLanguage(lang)
     setSutraNo(sutraNo)
-    if (mode === "chant") {
+    if (mode === Mode.Chant) {
       setMode(Mode.Chant)
-    } else if (mode === "recite") {
+    } else if (mode === Mode.TeachMe) {
       setMode(Mode.TeachMe)
     } else if (mode === "interpretation") {
       setMode(Mode.LearnMore)

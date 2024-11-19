@@ -24,7 +24,7 @@ const getResult = async (term: string) => {
 
 export const useGetResultQuery = (term: string) => {
   return useQuery<TResult[]>({
-    queryKey: ["search"],
+    queryKey: ["search", term],
     queryFn: () => getResult(term),
   })
 }
