@@ -1,3 +1,4 @@
+import { Mode } from "@/types/types"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
@@ -13,12 +14,12 @@ type TAudio = {
   file_path: string
 }
 
-const getAudio = async (number: number, mode: "chant" | "recite") => {
+const getAudio = async (number: number, mode: Mode) => {
   const response = await api.get(`/sutras/${number}/audio?mode=${mode}`)
   return response.data
 }
 
-export const useGetAudioQuery = (number: number, mode: "chant" | "recite") => {
+export const useGetAudioQuery = (number: number, mode: Mode) => {
   return useQuery<TAudio>({
     queryKey: ["audio", number, mode],
     queryFn: () => getAudio(number, mode),

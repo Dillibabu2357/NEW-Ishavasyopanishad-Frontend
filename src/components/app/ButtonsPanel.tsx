@@ -19,15 +19,17 @@ import {
 import useSutraStore from "@/store/sutraStore"
 import { useGetAudioQuery } from "@/api/audio.api"
 import { Slider } from "../ui/slider"
+import useModeStore from "@/store/modeStore"
 
 const ButtonsPanel = () => {
-  const { sutra_no, setSutraNo } = useSutraStore()
+  const { sutra_no, incrementSutra, decrementSutra } = useSutraStore()
+  const { mode } = useModeStore()
   const [isPlaying, setIsPlaying] = useState(false)
   const [isRepeating, setIsRepeating] = useState(false)
   const [volume, setVolume] = useState(1) // Default volume set to max (1.0)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  const { data } = useGetAudioQuery(sutra_no, "chant")
+  const { data } = useGetAudioQuery(sutra_no, mode)
 
   // Play the fetched audio when sutra_no changes
   useEffect(() => {
@@ -53,12 +55,16 @@ const ButtonsPanel = () => {
 
   // Handlers for buttons
   const handleNext = () => {
-    setSutraNo(sutra_no + 1) // Move to next sutra
+    incrementSutra() // Move to next sutra
   }
 
   const handlePrevious = () => {
-    if (sutra_no > 1) {
-      setSutraNo(sutra_no - 1) // Move to previous sutra
+    decrementSutra() // Move to previous sutra
+  }
+
+  const handleAudioEnd = () => {
+    if (!isRepeating) {
+      handleNext()
     }
   }
 
@@ -130,7 +136,7 @@ const ButtonsPanel = () => {
         </PopoverContent>
       </Popover>
 
-      <audio ref={audioRef} />
+      <audio ref={audioRef} onEnded={handleAudioEnd} />
     </div>
   )
 }

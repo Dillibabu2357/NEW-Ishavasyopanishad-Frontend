@@ -7,11 +7,13 @@ import usePhilosophyStore from "@/store/philosophyStore"
 import { useGetInterpretationQuery } from "@/api/interpretation.api"
 import CustomBeatLoader from "../shared/CustomBeatLoader"
 import MultilineText from "../shared/MultilineText"
+import TexturedButton from "../shared/TexturedButton"
+import { Philosophy } from "@/types/types"
 
 const InterpretationView = () => {
   const { sutra_no } = useSutraStore()
   const { language } = useLanguageStore()
-  const { philosophy } = usePhilosophyStore()
+  const { philosophy, setPhilosophy } = usePhilosophyStore()
 
   const { error, isLoading, data } = useGetInterpretationQuery(
     sutra_no,
@@ -29,7 +31,29 @@ const InterpretationView = () => {
     >
       {/* For top padding when scrolling  */}
       <div className="pt-8"></div>
-      <div className="h-[350px] px-8 overflow-y-auto">
+
+      <div className="flex justify-center">
+        <TexturedButton
+          selected={philosophy === Philosophy.Advaitha}
+          onClick={() => setPhilosophy(Philosophy.Advaitha)}
+        >
+          Advaita
+        </TexturedButton>
+        <TexturedButton
+          selected={philosophy === Philosophy.Dvaitha}
+          onClick={() => setPhilosophy(Philosophy.Dvaitha)}
+        >
+          Dvaita
+        </TexturedButton>
+        <TexturedButton
+          selected={philosophy === Philosophy.Vishishtadvaita}
+          onClick={() => setPhilosophy(Philosophy.Vishishtadvaita)}
+        >
+          Vishishtadvaita
+        </TexturedButton>
+      </div>
+
+      <div className="h-[350px] max-w-[90%] mx-auto overflow-y-auto">
         {isLoading && <CustomBeatLoader />}
         {error && <ErrorMessage error={"No interpretation found"} />}
         <div className="font-semibold text-armygreen px-4 pt-2 text-lg">

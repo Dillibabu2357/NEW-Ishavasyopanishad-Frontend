@@ -23,8 +23,12 @@ const getInterpretation = async (
   philosophy: Philosophy,
 ) => {
   const response = await api.get(
-    `/sutras/${number}/interpretation?lang=${lang}&ptype=${philosophy}`,
+    `/sutras/${number}/interpretation?lang=${lang}&phil=${philosophy}`,
   )
+  console.log(
+    `/sutras/${number}/interpretation?lang=${lang}&phil=${philosophy}`,
+  )
+  console.log(response.data)
   return response.data
 }
 
@@ -34,7 +38,7 @@ export const useGetInterpretationQuery = (
   philosophy: Philosophy,
 ) => {
   return useQuery<TInterpretation>({
-    queryKey: ["interpretations", number, lang],
+    queryKey: ["interpretations", number, lang, philosophy],
     queryFn: () => getInterpretation(number, lang, philosophy),
   })
 }
