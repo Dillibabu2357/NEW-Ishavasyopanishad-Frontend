@@ -20,7 +20,7 @@ const TexturedButton = ({
     <button
       className={cn(
         `inline-block px-6 pt-2 pb-3 font-bold items-center ${
-          selected ? "text-white" : "text-orange-500"
+          selected ? "text-white" : "text-darkorange"
         }`,
         className,
       )}

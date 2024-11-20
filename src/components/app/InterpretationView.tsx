@@ -56,7 +56,7 @@ const InterpretationView = () => {
       <div className="h-[350px] max-w-[90%] mx-auto overflow-y-auto">
         {isLoading && <CustomBeatLoader />}
         {error && <ErrorMessage error={"No interpretation found"} />}
-        <div className="font-semibold text-armygreen px-4 pt-2 text-lg">
+        <div className="font-semibold text-darkbrown px-4 pt-2 text-lg">
           {data && <MultilineText text={data.text} />}
         </div>
       </div>

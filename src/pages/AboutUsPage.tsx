@@ -5,10 +5,10 @@ export default function AboutUsPage() {
   return (
     <BaseLayout>
       <Header />
-      <h1 className="mt-10 text-center font-bold text-4xl pb-4 text-orange-500 underline capitalize">
+      <h1 className="mt-10 text-center font-bold text-4xl pb-4 text-darkorange underline capitalize">
         About the project
       </h1>
-      <div className="flex flex-col gap-2 max-w-7xl mx-auto py-4">
+      <div className="flex flex-col gap-4 max-w-7xl mx-auto py-4 text-lg">
         <p>
           The current web-based app for an Upanishadic reader, which is part of
           the Sanskrit Knowledge Accessor (SKA) project, aligns closely with the

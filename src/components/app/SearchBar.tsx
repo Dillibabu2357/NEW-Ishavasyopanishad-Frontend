@@ -68,14 +68,14 @@ const SearchBar = () => {
           placeholder="Search here..."
           value={searchTerm}
           onChange={handleInputChange}
-          className="h-10 pl-10 pr-4 rounded-md w-full placeholder:text-armygreen placeholder:font-bold"
+          className="h-10 pl-10 pr-4 rounded-md w-full placeholder:text-darkbrown placeholder:font-bold"
           style={{
             backgroundImage: `url(${LightBarImg})`,
             backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat",
           }}
         />
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-armygreen" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-darkbrown" />
       </div>
       {searchTerm !== "" && results && (
         <div
@@ -93,7 +93,7 @@ const SearchBar = () => {
               key={index}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="p-2 w-full text-armygreen font-semibold hover:text-white flex items-center hover:cursor-pointer hover:rounded-sm"
+              className="p-2 w-full text-darkbrown font-semibold hover:text-white flex items-center hover:cursor-pointer hover:rounded-sm"
               style={{
                 backgroundImage: `url(${hoveredIndex === index ? DarkBarImg : "none"})`,
                 backgroundSize: "100% 100%",

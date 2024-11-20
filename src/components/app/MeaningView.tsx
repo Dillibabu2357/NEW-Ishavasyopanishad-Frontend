@@ -24,7 +24,7 @@ const MeaningView = () => {
       <div className="h-[200px] px-8 overflow-y-auto">
         {isLoading && <CustomBeatLoader />}
         {error && <ErrorMessage error={"No meaning found"} />}
-        <div className="font-semibold text-armygreen text-lg pl-4">
+        <div className="font-semibold text-darkbrown text-lg pl-4">
           {data && <MultilineText text={data.text} />}
         </div>
       </div>

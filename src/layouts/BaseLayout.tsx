@@ -28,7 +28,7 @@ const BaseLayout = ({ children }: BaseLayoutProps) => {
       <div className="relative z-10">{children}</div>
       <footer className="flex justify-around p-4 relative z-10">
         <div>
-          <h2 className="font-bold text-xl text-armygreen mb-2 ml-4">
+          <h2 className="font-bold text-xl text-darkbrown mb-2 ml-4">
             Sponsored By:
           </h2>
           <img
@@ -39,7 +39,7 @@ const BaseLayout = ({ children }: BaseLayoutProps) => {
           />
         </div>
         <div>
-          <h2 className="font-bold text-xl text-armygreen mb-2 text-center">
+          <h2 className="font-bold text-xl text-darkbrown mb-2 text-center">
             Implemented By:
           </h2>
           <div className="flex gap-2">

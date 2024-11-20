@@ -5,10 +5,10 @@ export default function DisclaimerPage() {
   return (
     <BaseLayout>
       <Header />
-      <h1 className="mt-10 text-center font-bold text-4xl pb-4 text-orange-500 underline capitalize">
+      <h1 className="mt-10 text-center font-bold text-4xl pb-4 text-darkorange underline capitalize">
         Disclaimer
       </h1>
-      <div className="flex flex-col gap-2 max-w-7xl mx-auto py-4">
+      <div className="flex flex-col gap-4 text-lg max-w-7xl mx-auto py-4">
         <p>
           Also known as also known as Ishopanishad and Vajasaneyi Samhita
           Upanishad, the Ishavasya Upanishad, is one of the most important as

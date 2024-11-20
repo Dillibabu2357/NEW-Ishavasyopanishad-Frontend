@@ -20,8 +20,8 @@ const Header = () => {
           className="text-center hover:cursor-pointer"
           onClick={() => navigate("/")}
         >
-          <h2 className="text-armygreen font-bold text-2xl">ईशावास्योपनिषद्</h2>
-          <h2 className="text-orange-500 font-bold text-2xl">
+          <h2 className="text-darkbrown font-bold text-2xl">ईशावास्योपनिषद्</h2>
+          <h2 className="text-darkorange font-bold text-2xl">
             Īśāvāsyopaniṣad
           </h2>
         </div>
@@ -30,10 +30,10 @@ const Header = () => {
         className="text-center hover:cursor-pointer"
         onClick={() => navigate("/")}
       >
-        <h1 className="text-armygreen font-bold text-2xl">
+        <h1 className="text-darkbrown font-bold text-2xl">
           Sanskrit Knowledge Accessor
         </h1>
-        <h2 className="text-orange-500 font-bold text-xl">Upanishad Reader</h2>
+        <h2 className="text-darkorange font-bold text-xl">Upanishad Reader</h2>
       </div>
       <div className="pr-4 pt-2">
         <TexturedButton

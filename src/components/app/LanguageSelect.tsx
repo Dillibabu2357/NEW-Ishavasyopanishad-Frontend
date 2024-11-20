@@ -33,7 +33,7 @@ const LanguageSelect = () => {
   return (
     <Select onValueChange={(value) => setLanguage(value as Language)}>
       <SelectTrigger
-        className="w-[180px] border-none outline-black text-armygreen hover:text-white font-bold"
+        className="w-[180px] border-none outline-black text-darkbrown hover:text-white font-bold"
         style={{
           boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
           backgroundImage: `url(${isHovered ? DarkBarImg : LightBarImg})`,
@@ -63,7 +63,7 @@ const LanguageSelect = () => {
           <SelectItem
             key={item.value}
             value={item.value}
-            className="focus:text-white font-bold text-armygreen"
+            className="focus:text-white font-bold text-darkbrown"
             style={{
               backgroundImage:
                 focusedItem === item.value ? `url(${DarkBarImg})` : "none",

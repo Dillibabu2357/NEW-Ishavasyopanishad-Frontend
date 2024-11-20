@@ -59,7 +59,7 @@ const LeftScroll = () => {
           <h4
             className={`${
               mode === item || hovered === item
-                ? "font-bold text-orange-500"
+                ? "font-bold text-darkorange"
                 : ""
             }`}
           >

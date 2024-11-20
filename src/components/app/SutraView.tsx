@@ -31,7 +31,7 @@ const SutraView = () => {
         {isLoading && <CustomBeatLoader />}
         {error && <ErrorMessage error={error.message} />}
         {data && (
-          <div className="font-bold text-orange-500 text-2xl text-center">
+          <div className="font-bold text-darkorange text-2xl text-center">
             {data.text && <MultilineText text={data.text} />}
           </div>
         )}
@@ -39,7 +39,7 @@ const SutraView = () => {
         {isTransLoading && <CustomBeatLoader />}
         {transError && <ErrorMessage error={transError.message} />}
         {transliteration && (
-          <p className="mt-4 text-armygreen font-semibold text-center text-xl">
+          <p className="mt-4 text-darkbrown font-semibold text-center text-xl">
             {transliteration.text && (
               <MultilineText text={transliteration.text} />
             )}
