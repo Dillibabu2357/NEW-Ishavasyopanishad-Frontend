@@ -10,6 +10,21 @@ import { Mode } from "@/types/types"
 import { useNavigate } from "react-router-dom"
 import useModeStore from "@/store/modeStore"
 
+const iconMap = {
+  chant: {
+    default: ChantIcon,
+    active: ChantDarkIcon,
+  },
+  teach_me: {
+    default: TeachMeIcon,
+    active: TeachMeDarkIcon,
+  },
+  learn_more: {
+    default: LearnMoreIcon,
+    active: LearnMoreDarkIcon,
+  },
+} as const
+
 const LeftScroll = () => {
   const { mode, setMode } = useModeStore()
   const [hovered, setHovered] = useState<Mode | null>(null)
@@ -17,18 +32,8 @@ const LeftScroll = () => {
   const navigate = useNavigate()
 
   const getIcon = (item: Mode) => {
-    if (mode === item || hovered === item) {
-      return item === "chant"
-        ? ChantDarkIcon
-        : item === "teach_me"
-          ? TeachMeDarkIcon
-          : LearnMoreDarkIcon
-    }
-    return item === "chant"
-      ? ChantIcon
-      : item === "teach_me"
-        ? TeachMeIcon
-        : LearnMoreIcon
+    const isActive = mode === item || hovered === item
+    return isActive ? iconMap[item].active : iconMap[item].default
   }
 
   return (
@@ -45,7 +50,7 @@ const LeftScroll = () => {
           key={item}
           onClick={() => {
             setMode(item as Mode)
-            navigate(item.split("_").join("-"))
+            navigate(`/${item.split("_").join("-")}`)
           }}
           onMouseEnter={() => setHovered(item as Mode)}
           onMouseLeave={() => setHovered(null)}

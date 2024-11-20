@@ -14,11 +14,13 @@ import useModeStore from "@/store/modeStore"
 import { Language, Mode, Philosophy } from "@/types/types"
 import useSutraStore from "@/store/sutraStore"
 import usePhilosophyStore from "@/store/philosophyStore"
+import { useNavigate } from "react-router-dom"
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>("")
   const debouncedSearchTerm = useDebounce(searchTerm, 250)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const navigate = useNavigate()
 
   const { setLanguage } = useLanguageStore()
   const { setMode } = useModeStore()
@@ -42,12 +44,16 @@ const SearchBar = () => {
   ) => {
     setLanguage(lang)
     setSutraNo(sutraNo)
+    console.log(mode)
     if (mode === Mode.Chant) {
       setMode(Mode.Chant)
+      navigate("/chant")
     } else if (mode === Mode.TeachMe) {
       setMode(Mode.TeachMe)
-    } else if (mode === "interpretation") {
+      navigate("/teach-me")
+    } else if (mode.startsWith("interpretation")) {
       setMode(Mode.LearnMore)
+      navigate("learn-more")
       const pType = mode.split(" - ")[1]
       setPhilosophy(pType as Philosophy)
     }
@@ -100,7 +106,13 @@ const SearchBar = () => {
               <p className="whitespace-nowrap overflow-hidden text-ellipsis flex-[9]">
                 {result.text}
               </p>
-              <p className="flex-[1] text-right">{result.sutra_no}</p>
+              <p className="flex-[1] text-right">
+                ॥
+                {result.sutra_no === 0 || result.sutra_no === -1
+                  ? "S"
+                  : result.sutra_no}
+                ॥
+              </p>
             </div>
           ))}
         </div>

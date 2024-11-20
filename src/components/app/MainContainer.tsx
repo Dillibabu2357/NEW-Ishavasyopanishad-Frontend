@@ -9,9 +9,9 @@ import InterpretationView from "./InterpretationView"
 
 const MainContainer = () => {
   return (
-    <div className="flex justify-between items-center max-w-7xl mx-auto mt-10 min-h-[calc(100vh-96px)]">
+    <div className="flex justify-center gap-4 mt-10">
       <LeftScroll />
-      <div className="flex-grow">
+      <div className="flex-grow max-w-4xl">
         <SearchBar />
         <Routes>
           <Route
