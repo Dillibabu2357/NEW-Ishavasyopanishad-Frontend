@@ -6,6 +6,8 @@ import { useGetTransliterationQuery } from "@/api/transliteration.api"
 import useLanguageStore from "@/store/languageStore"
 import CustomBeatLoader from "../shared/CustomBeatLoader"
 import MultilineText from "../shared/MultilineText"
+import { ExternalLink } from "lucide-react"
+import { Link } from "react-router-dom"
 
 const SutraView = () => {
   const { sutra_no } = useSutraStore()
@@ -27,9 +29,22 @@ const SutraView = () => {
     >
       {/* For top padding when scrolling  */}
       <div className="pt-8"></div>
-      <div className="h-[200px] px-8 overflow-y-auto box-content">
+      <div className="h-[200px] max-w-[90%] mx-auto overflow-y-auto box-content">
         {isLoading && <CustomBeatLoader />}
         {error && <ErrorMessage error={error.message} />}
+        {data && (
+          <div className="flex justify-between text-lg font-bold text-darkbrown mx-4">
+            <Link to="/anusarak.png" target="_blank" rel="noopener noreferrer">
+              {" "}
+              <div className="flex gap-1 items-center">
+                Anusarak <ExternalLink size="20px" />
+              </div>
+            </Link>
+            <p className="bg-darkbrown rounded-full text-white flex items-center justify-center w-10 h-10">
+              {data.number}
+            </p>
+          </div>
+        )}
         {data && (
           <div className="font-bold text-darkorange text-2xl text-center">
             {data.text && <MultilineText text={data.text} />}

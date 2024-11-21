@@ -37,7 +37,11 @@ const Header = () => {
       </div>
       <div className="pr-4 pt-2">
         <TexturedButton
-          selected={location.pathname === "/"}
+          selected={
+            location.pathname === "/" ||
+            location.pathname === "/chant" ||
+            location.pathname === "teach-me"
+          }
           onClick={() => navigate("/")}
         >
           Home

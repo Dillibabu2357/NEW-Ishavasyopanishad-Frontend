@@ -1,6 +1,6 @@
-const MultilineText = ({ text }: { text: string }) => {
+const MultilineText = ({ text, gap = 1 }: { text: string; gap?: number }) => {
   return (
-    <div>
+    <div className={`flex flex-col`} style={{ gap: `${gap}px` }}>
       {text.split("\n").map((line, index) => (
         <p key={index}>{line}</p>
       ))}

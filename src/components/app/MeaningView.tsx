@@ -21,7 +21,7 @@ const MeaningView = () => {
     >
       {/* For top padding when scrolling  */}
       <div className="pt-8"></div>
-      <div className="h-[200px] px-8 overflow-y-auto">
+      <div className="h-[200px] max-w-[90%] mx-auto overflow-y-auto">
         {isLoading && <CustomBeatLoader />}
         {error && <ErrorMessage error={"No meaning found"} />}
         <div className="font-semibold text-darkbrown text-lg pl-4">

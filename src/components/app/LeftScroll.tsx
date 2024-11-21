@@ -54,7 +54,7 @@ const LeftScroll = () => {
           }}
           onMouseEnter={() => setHovered(item as Mode)}
           onMouseLeave={() => setHovered(null)}
-          className="flex flex-col items-center p-2 cursor-pointer"
+          className="flex flex-col items-center p-2 cursor-pointer font-bold text-darkbrown"
         >
           <h4
             className={`${
