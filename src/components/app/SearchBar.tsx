@@ -23,7 +23,7 @@ const SearchBar = () => {
   const navigate = useNavigate()
 
   const { setLanguage } = useLanguageStore()
-  const { setMode } = useModeStore()
+  const { mode, setMode } = useModeStore()
   const { setSutraNo } = useSutraStore()
   const { setPhilosophy } = usePhilosophyStore()
 
@@ -44,7 +44,6 @@ const SearchBar = () => {
   ) => {
     setLanguage(lang)
     setSutraNo(sutraNo)
-    console.log(mode)
     if (mode === Mode.Chant) {
       setMode(Mode.Chant)
       navigate("/chant")
@@ -57,6 +56,7 @@ const SearchBar = () => {
       const pType = mode.split(" - ")[1]
       setPhilosophy(pType as Philosophy)
     }
+    setLanguage(lang)
     setSearchTerm("")
   }
 
@@ -103,15 +103,15 @@ const SearchBar = () => {
                 handleSearchSelect(result.lang, result.mode, result.sutra_no)
               }
             >
-              <p className="whitespace-nowrap overflow-hidden text-ellipsis flex-[9]">
+              <p className="whitespace-nowrap overflow-hidden text-ellipsis flex-[8]">
                 {result.text}
               </p>
-              <p className="flex-[1] text-right">
+              <p className="flex-[2] text-right">
                 ॥
                 {result.sutra_no === 0 || result.sutra_no === -1
                   ? "S"
                   : result.sutra_no}
-                ॥
+                ॥ {`(${mode.replace("_", " ")})`}
               </p>
             </div>
           ))}

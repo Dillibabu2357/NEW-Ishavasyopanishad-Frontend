@@ -12,7 +12,7 @@ const RightScroll = () => {
 
   return (
     <div
-      className="h-[600px] w-[250px]  bg-cover bg-no-repeat bg-center"
+      className="h-[600px] w-[250px] bg-cover bg-no-repeat bg-center"
       style={{
         backgroundImage: `url(${VScrollImg})`,
         backgroundSize: "100% 100%",
@@ -25,7 +25,6 @@ const RightScroll = () => {
         {error && <ErrorMessage error={error.message} />}
         <div className="flex gap-2 flex-wrap justify-center mt-2">
           <TexturedButton
-            key={0}
             selected={sutra_no === 0}
             onClick={() => setSutraNo(0)}
           >
@@ -46,7 +45,6 @@ const RightScroll = () => {
               ) : null,
             )}
           <TexturedButton
-            key={0}
             selected={sutra_no === -1}
             onClick={() => setSutraNo(-1)}
           >

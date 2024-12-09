@@ -6,8 +6,11 @@ export default function HelpPage() {
     <BaseLayout>
       <Header />
       <h1 className="mt-10 text-center font-bold text-4xl pb-4 text-darkorange underline capitalize">
-        Coming soon...
+        Help
       </h1>
+      <h2 className="font-bold text-xl text-darkbrown mb-6 text-center">
+        Coming soon...
+      </h2>
     </BaseLayout>
   )
 }
