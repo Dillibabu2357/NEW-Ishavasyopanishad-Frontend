@@ -41,7 +41,7 @@ const SutraView = () => {
               </div>
             </Link>
             <p className="bg-darkbrown rounded-full text-white flex items-center justify-center w-10 h-10">
-              {data.number}
+              {data.number === 0 || data.number === -1 ? "S" : data.number}
             </p>
           </div>
         )}

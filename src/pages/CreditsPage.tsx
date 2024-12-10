@@ -1,39 +1,52 @@
 import Header from "@/components/shared/Header"
 import BaseLayout from "@/layouts/BaseLayout"
 import LargeHorizontalScroll from "@/assets/large_horizontal_scroll.png"
+import { ExternalLink } from "lucide-react"
+
+const credits = [
+  {
+    role: "Principal Investigator",
+    name: "Dr. Amba Kulkarni",
+    link: "https://sanskrit.uohyd.ac.in/faculty/amba/",
+  },
+  {
+    role: "Co-investigator",
+    name: "Dr. S Vidyashree",
+    link: "https://samskritifoundation.org/about/organisation/",
+  },
+  {
+    role: "Concept and Visualization",
+    name: "Dr. M.A. Alwar",
+    link: "https://samskritifoundation.org/about/organisation/",
+  },
+  {
+    role: "Project Administrator",
+    name: "Venkatesh R",
+    link: "https://samskritifoundation.org/about/organisation/",
+  },
+  {
+    role: "Software Developer",
+    name: "Pranav K Bhaskar",
+    link: "https://www.linkedin.com/in/pranav-k-bhaskar/",
+  },
+  {
+    role: "Project Linguist",
+    name: "Vinay Iyer",
+    link: "https://samskritifoundation.org/about/organisation/",
+  },
+  {
+    role: "Art Work",
+    name: "L K Acharya",
+    link: "https://samskritifoundation.org/about/organisation/",
+  },
+  {
+    role: "Art Work",
+    name: "Basavaraju",
+    link: "https://samskritifoundation.org/about/organisation/",
+  },
+]
 
 const CreditsPage = () => {
-  const credits = [
-    {
-      role: "Principal Investigator",
-      name: "Dr. Amba Kulkarni",
-    },
-    {
-      role: "Co-investigator",
-      name: "Dr. S Vidyashree",
-    },
-    {
-      role: "Concept and Visualization",
-      name: "Dr. M.A. Alwar",
-    },
-    {
-      role: "Project Administrator",
-      name: "Venkatesh R",
-    },
-    {
-      role: "Software Developer",
-      name: "Pranav K Bhaskar",
-    },
-    {
-      role: "Project Linguist",
-      name: "Vinay Iyer",
-    },
-    {
-      role: "Art Work",
-      name: "L K Acharya & Basavaraju",
-    },
-  ]
-
   return (
     <BaseLayout>
       <Header />
@@ -41,26 +54,37 @@ const CreditsPage = () => {
         <div className="flex items-center justify-center gap-3 mb-12">
           <h1 className="text-4xl font-bold text-orange-600">Credits</h1>
         </div>
-
         <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
           {credits.map((credit, index) => (
-            <div
+            <a
               key={index}
-              className="transform transition-all duration-300 hover:scale-105 w-[350px]"
-              style={{
-                backgroundImage: `url(${LargeHorizontalScroll})`,
-                backgroundSize: "100% 100%",
-                backgroundRepeat: "no-repeat",
-              }}
+              href={credit.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group no-underline"
             >
-              <div className="p-6 text-center">
-                <h2 className="text-lg font-semibold text-orange-600 mb-2">
-                  {credit.role}
-                </h2>
-                <div className="w-12 h-1 bg-orange-300 mx-auto mb-4"></div>
-                <p className="text-darkbrown font-medium">{credit.name}</p>
+              <div
+                className="transform transition-all duration-300 hover:scale-105 w-[350px] cursor-pointer"
+                style={{
+                  backgroundImage: `url(${LargeHorizontalScroll})`,
+                  backgroundSize: "100% 100%",
+                  backgroundRepeat: "no-repeat",
+                }}
+              >
+                <div className="p-6 text-center">
+                  <h2 className="text-lg font-semibold text-orange-600 mb-2">
+                    {credit.role}
+                  </h2>
+                  <div className="w-12 h-1 bg-orange-300 mx-auto mb-4"></div>
+                  <div className="flex items-center justify-center gap-2">
+                    <p className="text-darkbrown font-medium text-center ml-4">
+                      {credit.name}
+                    </p>
+                    <ExternalLink className="w-4 h-4 text-orange-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
