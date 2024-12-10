@@ -50,43 +50,41 @@ const CreditsPage = () => {
   return (
     <BaseLayout>
       <Header />
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-center gap-3 mb-12">
-          <h1 className="text-4xl font-bold text-orange-600">Credits</h1>
-        </div>
-        <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
-          {credits.map((credit, index) => (
-            <a
-              key={index}
-              href={credit.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group no-underline"
+      <h1 className="mt-10 text-center font-bold text-4xl pb-4 text-darkorange underline capitalize">
+        Credits
+      </h1>
+      <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto py-4">
+        {credits.map((credit, index) => (
+          <a
+            key={index}
+            href={credit.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group no-underline"
+          >
+            <div
+              className="transform transition-all duration-300 hover:scale-105 w-[350px] cursor-pointer"
+              style={{
+                backgroundImage: `url(${LargeHorizontalScroll})`,
+                backgroundSize: "100% 100%",
+                backgroundRepeat: "no-repeat",
+              }}
             >
-              <div
-                className="transform transition-all duration-300 hover:scale-105 w-[350px] cursor-pointer"
-                style={{
-                  backgroundImage: `url(${LargeHorizontalScroll})`,
-                  backgroundSize: "100% 100%",
-                  backgroundRepeat: "no-repeat",
-                }}
-              >
-                <div className="p-6 text-center">
-                  <h2 className="text-lg font-semibold text-orange-600 mb-2">
-                    {credit.role}
-                  </h2>
-                  <div className="w-12 h-1 bg-orange-300 mx-auto mb-4"></div>
-                  <div className="flex items-center justify-center gap-2">
-                    <p className="text-darkbrown font-medium text-center ml-4">
-                      {credit.name}
-                    </p>
-                    <ExternalLink className="w-4 h-4 text-orange-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
+              <div className="p-6 text-center">
+                <h2 className="text-lg font-semibold text-orange-600 mb-2">
+                  {credit.role}
+                </h2>
+                <div className="w-12 h-1 bg-orange-300 mx-auto mb-4"></div>
+                <div className="flex items-center justify-center gap-2">
+                  <p className="text-darkbrown font-medium text-center ml-4">
+                    {credit.name}
+                  </p>
+                  <ExternalLink className="w-4 h-4 text-orange-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </div>
-            </a>
-          ))}
-        </div>
+            </div>
+          </a>
+        ))}
       </div>
     </BaseLayout>
   )

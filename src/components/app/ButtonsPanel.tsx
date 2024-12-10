@@ -105,25 +105,32 @@ const ButtonsPanel = () => {
 
   return (
     <div className="flex justify-center gap-2 mb-4">
-      <TexturedButton onClick={handlePrevious}>
+      <TexturedButton onClick={handlePrevious} title="Next">
         <ChevronFirst />
       </TexturedButton>
 
-      <TexturedButton onClick={handlePlayPause}>
+      <TexturedButton
+        onClick={handlePlayPause}
+        title={isPlaying ? "Pause" : "Play"}
+      >
         {isPlaying ? <Pause /> : <Play />}
       </TexturedButton>
 
-      <TexturedButton onClick={handleNext}>
+      <TexturedButton onClick={handleNext} title="Previous">
         <ChevronLast />
       </TexturedButton>
 
-      <TexturedButton onClick={handleRepeat} selected={isRepeating}>
+      <TexturedButton
+        onClick={handleRepeat}
+        selected={isRepeating}
+        title="Repeat"
+      >
         <Repeat />
       </TexturedButton>
 
       <Popover>
         <PopoverTrigger>
-          <TexturedButton>{getVolumeIcon()}</TexturedButton>
+          <TexturedButton title="Volume">{getVolumeIcon()}</TexturedButton>
         </PopoverTrigger>
         <PopoverContent>
           <Slider
